@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import logging
 import os
+import sys
 from typing import Iterable, List, Optional, Sequence, Tuple
 
 import pandas as pd
@@ -115,6 +116,32 @@ def _recommend_top1(model: NCL, user_values: Sequence[Tuple[object, str]]) -> Li
     return recommendations
 
 
+def _normalize_cli_tokens(tokens: Sequence[str]) -> List[str]:
+    """Merge stray double-hyphen tokens with the following option name.
+
+    Some shells/users accidentally pass options as ``-- option`` instead of the
+    canonical ``--option`` form. ``argparse`` treats ``--`` as the special token
+    that terminates option parsing, which would make the remaining argument look
+    like a positional value and ultimately trigger a "required" error.  This
+    helper stitches those tokens back together before handing them to the
+    parser.
+    """
+
+    normalized: List[str] = []
+    i = 0
+    while i < len(tokens):
+        token = tokens[i]
+        if token == "--" and i + 1 < len(tokens):
+            next_token = tokens[i + 1]
+            if next_token and not next_token.startswith("-"):
+                normalized.append(f"--{next_token}")
+                i += 2
+                continue
+        normalized.append(token)
+        i += 1
+    return normalized
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate top-1 book recommendations.")
     model_group = parser.add_mutually_exclusive_group(required=True)
@@ -164,7 +191,8 @@ def main() -> None:
         default="INFO",
         help="Logging level (e.g., INFO, DEBUG).",
     )
-    args = parser.parse_args()
+    raw_args = _normalize_cli_tokens(sys.argv[1:])
+    args = parser.parse_args(raw_args)
 
     logging.basicConfig(level=getattr(logging, args.log_level.upper(), logging.INFO))
 
