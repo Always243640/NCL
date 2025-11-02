@@ -1,0 +1,847 @@
+Sat 01 Nov 2025 15:09:54 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = False
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/ml-1m
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 300
+train_batch_size = 4096
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}
+repeatable = False
+metrics = ['Recall', 'NDCG']
+topk = [10, 20, 50]
+valid_metric = NDCG@10
+valid_metric_bigger = True
+eval_batch_size = 4096000
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'rating']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = {'rating': '[3,inf)'}
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+n_layers = 3
+reg_weight = 0.0001
+ssl_temp = 0.1
+ssl_reg = 1e-07
+hyper_layers = 1
+alpha = 1
+proto_reg = 8e-08
+num_clusters = 1000
+m_step = 1
+warm_up_step = 20
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.GENERAL
+eval_setting = {'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': 'full'}
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cpu
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sat 01 Nov 2025 15:09:56 INFO  ml-1m
+The number of users: 6040
+Average actions of users: 138.51266766020865
+The number of items: 3629
+Average actions of items: 230.56174200661522
+The number of inters: 836478
+The sparsity of the dataset: 96.18380448885814%
+Remain Fields: ['user_id', 'item_id', 'rating']
+Sat 01 Nov 2025 15:09:57 INFO  [Training]: train_batch_size = [4096] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Sat 01 Nov 2025 15:09:57 INFO  [Evaluation]: eval_batch_size = [4096000] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}]
+Sat 01 Nov 2025 15:10:05 INFO  NCL(
+  (user_embedding): Embedding(6040, 64)
+  (item_embedding): Embedding(3629, 64)
+  (mf_loss): BPRLoss()
+  (reg_loss): EmbLoss()
+)
+Trainable parameters: 618816
+Sat 01 Nov 2025 15:10:06 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:11:45 INFO  epoch 0 training [time: 98.38s, train_loss1: 114.3616, train_loss2: 0.3546]
+Sat 01 Nov 2025 15:11:45 INFO  epoch 0 evaluating [time: 0.40s, valid_score: 0.016500]
+Sat 01 Nov 2025 15:11:45 INFO  valid result: 
+recall@10 : 0.0115    recall@20 : 0.0197    recall@50 : 0.0393    ndcg@10 : 0.0165    ndcg@20 : 0.0181    ndcg@50 : 0.0243
+Sat 01 Nov 2025 15:11:46 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:11:46 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:11:46 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:13:23 INFO  epoch 1 training [time: 97.48s, train_loss1: 114.3581, train_loss2: 0.1084]
+Sat 01 Nov 2025 15:13:24 INFO  epoch 1 evaluating [time: 0.60s, valid_score: 0.014300]
+Sat 01 Nov 2025 15:13:24 INFO  valid result: 
+recall@10 : 0.0107    recall@20 : 0.0178    recall@50 : 0.0356    ndcg@10 : 0.0143    ndcg@20 : 0.0158    ndcg@50 : 0.0214
+Sat 01 Nov 2025 15:13:24 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:15:02 INFO  epoch 2 training [time: 98.31s, train_loss1: 114.3544, train_loss2: 0.0859]
+Sat 01 Nov 2025 15:15:03 INFO  epoch 2 evaluating [time: 0.39s, valid_score: 0.014400]
+Sat 01 Nov 2025 15:15:03 INFO  valid result: 
+recall@10 : 0.0107    recall@20 : 0.0178    recall@50 : 0.037    ndcg@10 : 0.0144    ndcg@20 : 0.016    ndcg@50 : 0.022
+Sat 01 Nov 2025 15:15:03 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:16:42 INFO  epoch 3 training [time: 98.76s, train_loss1: 114.3484, train_loss2: 0.0734]
+Sat 01 Nov 2025 15:16:42 INFO  epoch 3 evaluating [time: 0.39s, valid_score: 0.016200]
+Sat 01 Nov 2025 15:16:42 INFO  valid result: 
+recall@10 : 0.0123    recall@20 : 0.0198    recall@50 : 0.0415    ndcg@10 : 0.0162    ndcg@20 : 0.0179    ndcg@50 : 0.0248
+Sat 01 Nov 2025 15:16:42 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:18:22 INFO  epoch 4 training [time: 99.37s, train_loss1: 114.3385, train_loss2: 0.0698]
+Sat 01 Nov 2025 15:18:22 INFO  epoch 4 evaluating [time: 0.42s, valid_score: 0.019300]
+Sat 01 Nov 2025 15:18:22 INFO  valid result: 
+recall@10 : 0.0149    recall@20 : 0.0242    recall@50 : 0.0487    ndcg@10 : 0.0193    ndcg@20 : 0.0216    ndcg@50 : 0.0292
+Sat 01 Nov 2025 15:18:22 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:18:22 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:18:22 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:20:02 INFO  epoch 5 training [time: 99.06s, train_loss1: 114.3219, train_loss2: 0.0685]
+Sat 01 Nov 2025 15:20:02 INFO  epoch 5 evaluating [time: 0.43s, valid_score: 0.024700]
+Sat 01 Nov 2025 15:20:02 INFO  valid result: 
+recall@10 : 0.019    recall@20 : 0.0308    recall@50 : 0.0574    ndcg@10 : 0.0247    ndcg@20 : 0.0273    ndcg@50 : 0.0355
+Sat 01 Nov 2025 15:20:02 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:20:02 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:20:02 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:21:41 INFO  epoch 6 training [time: 98.76s, train_loss1: 114.2935, train_loss2: 0.0689]
+Sat 01 Nov 2025 15:21:41 INFO  epoch 6 evaluating [time: 0.40s, valid_score: 0.032000]
+Sat 01 Nov 2025 15:21:41 INFO  valid result: 
+recall@10 : 0.0261    recall@20 : 0.0402    recall@50 : 0.0731    ndcg@10 : 0.032    ndcg@20 : 0.0349    ndcg@50 : 0.0452
+Sat 01 Nov 2025 15:21:41 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:21:41 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:21:41 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:23:20 INFO  epoch 7 training [time: 98.59s, train_loss1: 114.2429, train_loss2: 0.0716]
+Sat 01 Nov 2025 15:23:21 INFO  epoch 7 evaluating [time: 0.39s, valid_score: 0.042700]
+Sat 01 Nov 2025 15:23:21 INFO  valid result: 
+recall@10 : 0.0353    recall@20 : 0.0558    recall@50 : 0.0959    ndcg@10 : 0.0427    ndcg@20 : 0.0474    ndcg@50 : 0.0597
+Sat 01 Nov 2025 15:23:21 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:23:21 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:23:21 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:24:59 INFO  epoch 8 training [time: 97.85s, train_loss1: 114.1485, train_loss2: 0.0777]
+Sat 01 Nov 2025 15:24:59 INFO  epoch 8 evaluating [time: 0.42s, valid_score: 0.058400]
+Sat 01 Nov 2025 15:24:59 INFO  valid result: 
+recall@10 : 0.0482    recall@20 : 0.0747    recall@50 : 0.1266    ndcg@10 : 0.0584    ndcg@20 : 0.0642    ndcg@50 : 0.0801
+Sat 01 Nov 2025 15:24:59 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:24:59 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:24:59 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:26:38 INFO  epoch 9 training [time: 98.43s, train_loss1: 113.9618, train_loss2: 0.0913]
+Sat 01 Nov 2025 15:26:38 INFO  epoch 9 evaluating [time: 0.38s, valid_score: 0.078200]
+Sat 01 Nov 2025 15:26:38 INFO  valid result: 
+recall@10 : 0.0659    recall@20 : 0.1007    recall@50 : 0.1631    ndcg@10 : 0.0782    ndcg@20 : 0.0858    ndcg@50 : 0.1051
+Sat 01 Nov 2025 15:26:38 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:26:38 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:26:38 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:28:17 INFO  epoch 10 training [time: 98.36s, train_loss1: 113.5405, train_loss2: 0.1361]
+Sat 01 Nov 2025 15:28:17 INFO  epoch 10 evaluating [time: 0.38s, valid_score: 0.109800]
+Sat 01 Nov 2025 15:28:17 INFO  valid result: 
+recall@10 : 0.0899    recall@20 : 0.1347    recall@50 : 0.212    ndcg@10 : 0.1098    ndcg@20 : 0.1184    ndcg@50 : 0.1421
+Sat 01 Nov 2025 15:28:17 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:28:17 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:28:17 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:29:55 INFO  epoch 11 training [time: 97.59s, train_loss1: 80.2456, train_loss2: 0.8750]
+Sat 01 Nov 2025 15:29:55 INFO  epoch 11 evaluating [time: 0.37s, valid_score: 0.101900]
+Sat 01 Nov 2025 15:29:55 INFO  valid result: 
+recall@10 : 0.0749    recall@20 : 0.1295    recall@50 : 0.2213    ndcg@10 : 0.1019    ndcg@20 : 0.1131    ndcg@50 : 0.1403
+Sat 01 Nov 2025 15:29:55 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:31:34 INFO  epoch 12 training [time: 98.07s, train_loss1: 56.1392, train_loss2: 1.1157]
+Sat 01 Nov 2025 15:31:34 INFO  epoch 12 evaluating [time: 0.38s, valid_score: 0.103500]
+Sat 01 Nov 2025 15:31:34 INFO  valid result: 
+recall@10 : 0.0771    recall@20 : 0.1306    recall@50 : 0.2252    ndcg@10 : 0.1035    ndcg@20 : 0.1142    ndcg@50 : 0.1425
+Sat 01 Nov 2025 15:31:34 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:33:12 INFO  epoch 13 training [time: 97.90s, train_loss1: 53.6469, train_loss2: 1.0986]
+Sat 01 Nov 2025 15:33:13 INFO  epoch 13 evaluating [time: 0.37s, valid_score: 0.106900]
+Sat 01 Nov 2025 15:33:13 INFO  valid result: 
+recall@10 : 0.0807    recall@20 : 0.1333    recall@50 : 0.2362    ndcg@10 : 0.1069    ndcg@20 : 0.117    ndcg@50 : 0.1479
+Sat 01 Nov 2025 15:33:13 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:34:51 INFO  epoch 14 training [time: 97.90s, train_loss1: 50.5736, train_loss2: 1.0611]
+Sat 01 Nov 2025 15:34:51 INFO  epoch 14 evaluating [time: 0.37s, valid_score: 0.111600]
+Sat 01 Nov 2025 15:34:51 INFO  valid result: 
+recall@10 : 0.0849    recall@20 : 0.1403    recall@50 : 0.2509    ndcg@10 : 0.1116    ndcg@20 : 0.1227    ndcg@50 : 0.1561
+Sat 01 Nov 2025 15:34:51 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:34:51 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:34:51 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:36:30 INFO  epoch 15 training [time: 98.38s, train_loss1: 47.4592, train_loss2: 1.0263]
+Sat 01 Nov 2025 15:36:30 INFO  epoch 15 evaluating [time: 0.38s, valid_score: 0.118600]
+Sat 01 Nov 2025 15:36:30 INFO  valid result: 
+recall@10 : 0.091    recall@20 : 0.1484    recall@50 : 0.2634    ndcg@10 : 0.1186    ndcg@20 : 0.13    ndcg@50 : 0.1648
+Sat 01 Nov 2025 15:36:30 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:36:30 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:36:30 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:38:09 INFO  epoch 16 training [time: 98.34s, train_loss1: 45.1101, train_loss2: 0.9976]
+Sat 01 Nov 2025 15:38:09 INFO  epoch 16 evaluating [time: 0.38s, valid_score: 0.125100]
+Sat 01 Nov 2025 15:38:09 INFO  valid result: 
+recall@10 : 0.0948    recall@20 : 0.1542    recall@50 : 0.2735    ndcg@10 : 0.1251    ndcg@20 : 0.1369    ndcg@50 : 0.1731
+Sat 01 Nov 2025 15:38:09 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:38:09 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:38:09 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:39:48 INFO  epoch 17 training [time: 98.94s, train_loss1: 43.4524, train_loss2: 0.9762]
+Sat 01 Nov 2025 15:39:49 INFO  epoch 17 evaluating [time: 0.37s, valid_score: 0.130700]
+Sat 01 Nov 2025 15:39:49 INFO  valid result: 
+recall@10 : 0.0986    recall@20 : 0.1609    recall@50 : 0.283    ndcg@10 : 0.1307    ndcg@20 : 0.1431    ndcg@50 : 0.1805
+Sat 01 Nov 2025 15:39:49 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:39:49 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:39:49 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:43:33 INFO  epoch 18 training [time: 223.93s, train_loss1: 42.1203, train_loss2: 0.9600]
+Sat 01 Nov 2025 15:43:34 INFO  epoch 18 evaluating [time: 1.28s, valid_score: 0.135900]
+Sat 01 Nov 2025 15:43:34 INFO  valid result: 
+recall@10 : 0.1026    recall@20 : 0.1666    recall@50 : 0.2919    ndcg@10 : 0.1359    ndcg@20 : 0.1484    ndcg@50 : 0.1869
+Sat 01 Nov 2025 15:43:34 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:43:34 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:43:34 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:45:37 INFO  epoch 19 training [time: 122.25s, train_loss1: 40.7757, train_loss2: 0.9451]
+Sat 01 Nov 2025 15:45:37 INFO  epoch 19 evaluating [time: 0.38s, valid_score: 0.140900]
+Sat 01 Nov 2025 15:45:37 INFO  valid result: 
+recall@10 : 0.1065    recall@20 : 0.1716    recall@50 : 0.3021    ndcg@10 : 0.1409    ndcg@20 : 0.1534    ndcg@50 : 0.1936
+Sat 01 Nov 2025 15:45:37 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:45:37 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:45:37 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:47:17 INFO  epoch 20 training [time: 99.27s, train_loss1: 39.7794, train_loss2: 0.9335, train_loss3: 0.3033]
+Sat 01 Nov 2025 15:47:17 INFO  epoch 20 evaluating [time: 0.38s, valid_score: 0.145600]
+Sat 01 Nov 2025 15:47:17 INFO  valid result: 
+recall@10 : 0.1115    recall@20 : 0.1755    recall@50 : 0.309    ndcg@10 : 0.1456    ndcg@20 : 0.1577    ndcg@50 : 0.1991
+Sat 01 Nov 2025 15:47:17 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:47:17 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:47:17 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:48:59 INFO  epoch 21 training [time: 100.92s, train_loss1: 38.9874, train_loss2: 0.9197, train_loss3: 0.2918]
+Sat 01 Nov 2025 15:48:59 INFO  epoch 21 evaluating [time: 0.38s, valid_score: 0.149300]
+Sat 01 Nov 2025 15:48:59 INFO  valid result: 
+recall@10 : 0.1146    recall@20 : 0.1804    recall@50 : 0.3167    ndcg@10 : 0.1493    ndcg@20 : 0.162    ndcg@50 : 0.2042
+Sat 01 Nov 2025 15:48:59 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:48:59 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:48:59 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:50:57 INFO  epoch 22 training [time: 117.87s, train_loss1: 37.9969, train_loss2: 0.9100, train_loss3: 0.2849]
+Sat 01 Nov 2025 15:50:57 INFO  epoch 22 evaluating [time: 0.39s, valid_score: 0.153000]
+Sat 01 Nov 2025 15:50:57 INFO  valid result: 
+recall@10 : 0.1177    recall@20 : 0.1855    recall@50 : 0.3232    ndcg@10 : 0.153    ndcg@20 : 0.1657    ndcg@50 : 0.2085
+Sat 01 Nov 2025 15:50:57 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:50:57 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:50:57 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:52:40 INFO  epoch 23 training [time: 101.81s, train_loss1: 37.2308, train_loss2: 0.9008, train_loss3: 0.2793]
+Sat 01 Nov 2025 15:52:40 INFO  epoch 23 evaluating [time: 0.38s, valid_score: 0.155900]
+Sat 01 Nov 2025 15:52:40 INFO  valid result: 
+recall@10 : 0.1201    recall@20 : 0.1896    recall@50 : 0.329    ndcg@10 : 0.1559    ndcg@20 : 0.1693    ndcg@50 : 0.2125
+Sat 01 Nov 2025 15:52:40 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:52:40 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:52:40 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:54:21 INFO  epoch 24 training [time: 100.61s, train_loss1: 36.5150, train_loss2: 0.8921, train_loss3: 0.2726]
+Sat 01 Nov 2025 15:54:21 INFO  epoch 24 evaluating [time: 0.38s, valid_score: 0.158600]
+Sat 01 Nov 2025 15:54:21 INFO  valid result: 
+recall@10 : 0.1222    recall@20 : 0.1929    recall@50 : 0.3347    ndcg@10 : 0.1586    ndcg@20 : 0.172    ndcg@50 : 0.216
+Sat 01 Nov 2025 15:54:21 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:54:21 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:54:21 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:56:03 INFO  epoch 25 training [time: 101.99s, train_loss1: 35.9032, train_loss2: 0.8854, train_loss3: 0.2679]
+Sat 01 Nov 2025 15:56:04 INFO  epoch 25 evaluating [time: 0.37s, valid_score: 0.162100]
+Sat 01 Nov 2025 15:56:04 INFO  valid result: 
+recall@10 : 0.1255    recall@20 : 0.1963    recall@50 : 0.34    ndcg@10 : 0.1621    ndcg@20 : 0.1754    ndcg@50 : 0.2198
+Sat 01 Nov 2025 15:56:04 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:56:04 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:56:04 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:57:46 INFO  epoch 26 training [time: 101.53s, train_loss1: 35.3348, train_loss2: 0.8785, train_loss3: 0.2635]
+Sat 01 Nov 2025 15:57:46 INFO  epoch 26 evaluating [time: 0.38s, valid_score: 0.164600]
+Sat 01 Nov 2025 15:57:46 INFO  valid result: 
+recall@10 : 0.1273    recall@20 : 0.1999    recall@50 : 0.3447    ndcg@10 : 0.1646    ndcg@20 : 0.1785    ndcg@50 : 0.2233
+Sat 01 Nov 2025 15:57:46 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:57:46 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:57:46 INFO  Running E-step ! 
+Sat 01 Nov 2025 15:59:28 INFO  epoch 27 training [time: 101.34s, train_loss1: 34.7914, train_loss2: 0.8725, train_loss3: 0.2602]
+Sat 01 Nov 2025 15:59:28 INFO  epoch 27 evaluating [time: 0.39s, valid_score: 0.168000]
+Sat 01 Nov 2025 15:59:28 INFO  valid result: 
+recall@10 : 0.1304    recall@20 : 0.2034    recall@50 : 0.3499    ndcg@10 : 0.168    ndcg@20 : 0.1817    ndcg@50 : 0.227
+Sat 01 Nov 2025 15:59:28 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:59:28 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 15:59:28 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:01:10 INFO  epoch 28 training [time: 102.01s, train_loss1: 34.2104, train_loss2: 0.8673, train_loss3: 0.2543]
+Sat 01 Nov 2025 16:01:11 INFO  epoch 28 evaluating [time: 0.38s, valid_score: 0.170500]
+Sat 01 Nov 2025 16:01:11 INFO  valid result: 
+recall@10 : 0.1326    recall@20 : 0.2057    recall@50 : 0.3543    ndcg@10 : 0.1705    ndcg@20 : 0.1842    ndcg@50 : 0.2301
+Sat 01 Nov 2025 16:01:11 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:01:11 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:01:11 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:02:54 INFO  epoch 29 training [time: 103.15s, train_loss1: 33.7315, train_loss2: 0.8623, train_loss3: 0.2509]
+Sat 01 Nov 2025 16:02:54 INFO  epoch 29 evaluating [time: 0.39s, valid_score: 0.173400]
+Sat 01 Nov 2025 16:02:54 INFO  valid result: 
+recall@10 : 0.1348    recall@20 : 0.2096    recall@50 : 0.3579    ndcg@10 : 0.1734    ndcg@20 : 0.1874    ndcg@50 : 0.2332
+Sat 01 Nov 2025 16:02:54 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:02:54 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:02:54 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:04:36 INFO  epoch 30 training [time: 101.58s, train_loss1: 33.1330, train_loss2: 0.8574, train_loss3: 0.2470]
+Sat 01 Nov 2025 16:04:37 INFO  epoch 30 evaluating [time: 0.39s, valid_score: 0.175700]
+Sat 01 Nov 2025 16:04:37 INFO  valid result: 
+recall@10 : 0.1368    recall@20 : 0.2129    recall@50 : 0.362    ndcg@10 : 0.1757    ndcg@20 : 0.1901    ndcg@50 : 0.236
+Sat 01 Nov 2025 16:04:37 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:04:37 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:04:37 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:06:19 INFO  epoch 31 training [time: 101.64s, train_loss1: 32.7599, train_loss2: 0.8530, train_loss3: 0.2444]
+Sat 01 Nov 2025 16:06:19 INFO  epoch 31 evaluating [time: 0.39s, valid_score: 0.178100]
+Sat 01 Nov 2025 16:06:19 INFO  valid result: 
+recall@10 : 0.1384    recall@20 : 0.2153    recall@50 : 0.3654    ndcg@10 : 0.1781    ndcg@20 : 0.1926    ndcg@50 : 0.2391
+Sat 01 Nov 2025 16:06:19 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:06:19 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:06:19 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:08:00 INFO  epoch 32 training [time: 100.40s, train_loss1: 32.4772, train_loss2: 0.8490, train_loss3: 0.2411]
+Sat 01 Nov 2025 16:08:00 INFO  epoch 32 evaluating [time: 0.39s, valid_score: 0.180900]
+Sat 01 Nov 2025 16:08:00 INFO  valid result: 
+recall@10 : 0.1416    recall@20 : 0.2194    recall@50 : 0.3694    ndcg@10 : 0.1809    ndcg@20 : 0.1958    ndcg@50 : 0.2421
+Sat 01 Nov 2025 16:08:00 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:08:00 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:08:00 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:09:41 INFO  epoch 33 training [time: 100.61s, train_loss1: 32.1809, train_loss2: 0.8453, train_loss3: 0.2378]
+Sat 01 Nov 2025 16:09:41 INFO  epoch 33 evaluating [time: 0.38s, valid_score: 0.183200]
+Sat 01 Nov 2025 16:09:41 INFO  valid result: 
+recall@10 : 0.1435    recall@20 : 0.2218    recall@50 : 0.3726    ndcg@10 : 0.1832    ndcg@20 : 0.1982    ndcg@50 : 0.2449
+Sat 01 Nov 2025 16:09:41 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:09:41 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:09:41 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:11:20 INFO  epoch 34 training [time: 98.20s, train_loss1: 31.6821, train_loss2: 0.8420, train_loss3: 0.2348]
+Sat 01 Nov 2025 16:11:20 INFO  epoch 34 evaluating [time: 0.38s, valid_score: 0.185300]
+Sat 01 Nov 2025 16:11:20 INFO  valid result: 
+recall@10 : 0.1454    recall@20 : 0.2252    recall@50 : 0.3761    ndcg@10 : 0.1853    ndcg@20 : 0.2007    ndcg@50 : 0.2473
+Sat 01 Nov 2025 16:11:20 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:11:20 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:11:20 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:12:58 INFO  epoch 35 training [time: 98.11s, train_loss1: 31.4691, train_loss2: 0.8386, train_loss3: 0.2326]
+Sat 01 Nov 2025 16:12:59 INFO  epoch 35 evaluating [time: 0.39s, valid_score: 0.187100]
+Sat 01 Nov 2025 16:12:59 INFO  valid result: 
+recall@10 : 0.1469    recall@20 : 0.2279    recall@50 : 0.3794    ndcg@10 : 0.1871    ndcg@20 : 0.203    ndcg@50 : 0.2497
+Sat 01 Nov 2025 16:12:59 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:12:59 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:12:59 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:14:38 INFO  epoch 36 training [time: 99.08s, train_loss1: 30.9214, train_loss2: 0.8354, train_loss3: 0.2297]
+Sat 01 Nov 2025 16:14:38 INFO  epoch 36 evaluating [time: 0.38s, valid_score: 0.188800]
+Sat 01 Nov 2025 16:14:38 INFO  valid result: 
+recall@10 : 0.1487    recall@20 : 0.2312    recall@50 : 0.3829    ndcg@10 : 0.1888    ndcg@20 : 0.2054    ndcg@50 : 0.2519
+Sat 01 Nov 2025 16:14:38 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:14:38 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:14:38 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:16:18 INFO  epoch 37 training [time: 99.43s, train_loss1: 30.7574, train_loss2: 0.8319, train_loss3: 0.2269]
+Sat 01 Nov 2025 16:16:19 INFO  epoch 37 evaluating [time: 0.38s, valid_score: 0.191200]
+Sat 01 Nov 2025 16:16:19 INFO  valid result: 
+recall@10 : 0.1513    recall@20 : 0.2335    recall@50 : 0.386    ndcg@10 : 0.1912    ndcg@20 : 0.2075    ndcg@50 : 0.2543
+Sat 01 Nov 2025 16:16:19 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:16:19 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:16:19 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:18:00 INFO  epoch 38 training [time: 100.80s, train_loss1: 30.3775, train_loss2: 0.8289, train_loss3: 0.2247]
+Sat 01 Nov 2025 16:18:00 INFO  epoch 38 evaluating [time: 0.41s, valid_score: 0.192400]
+Sat 01 Nov 2025 16:18:00 INFO  valid result: 
+recall@10 : 0.1524    recall@20 : 0.2359    recall@50 : 0.3881    ndcg@10 : 0.1924    ndcg@20 : 0.2092    ndcg@50 : 0.2559
+Sat 01 Nov 2025 16:18:00 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:18:00 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:18:00 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:19:40 INFO  epoch 39 training [time: 99.28s, train_loss1: 30.1709, train_loss2: 0.8266, train_loss3: 0.2216]
+Sat 01 Nov 2025 16:19:40 INFO  epoch 39 evaluating [time: 0.37s, valid_score: 0.194300]
+Sat 01 Nov 2025 16:19:40 INFO  valid result: 
+recall@10 : 0.1545    recall@20 : 0.2385    recall@50 : 0.3904    ndcg@10 : 0.1943    ndcg@20 : 0.2114    ndcg@50 : 0.2581
+Sat 01 Nov 2025 16:19:40 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:19:40 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:19:40 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:21:20 INFO  epoch 40 training [time: 99.83s, train_loss1: 29.7668, train_loss2: 0.8240, train_loss3: 0.2197]
+Sat 01 Nov 2025 16:21:20 INFO  epoch 40 evaluating [time: 0.37s, valid_score: 0.195600]
+Sat 01 Nov 2025 16:21:20 INFO  valid result: 
+recall@10 : 0.1563    recall@20 : 0.2405    recall@50 : 0.3928    ndcg@10 : 0.1956    ndcg@20 : 0.2128    ndcg@50 : 0.2596
+Sat 01 Nov 2025 16:21:20 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:21:20 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:21:20 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:23:02 INFO  epoch 41 training [time: 100.95s, train_loss1: 29.5316, train_loss2: 0.8214, train_loss3: 0.2185]
+Sat 01 Nov 2025 16:23:02 INFO  epoch 41 evaluating [time: 0.41s, valid_score: 0.197100]
+Sat 01 Nov 2025 16:23:02 INFO  valid result: 
+recall@10 : 0.1583    recall@20 : 0.2415    recall@50 : 0.3948    ndcg@10 : 0.1971    ndcg@20 : 0.2138    ndcg@50 : 0.2611
+Sat 01 Nov 2025 16:23:02 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:23:02 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:23:02 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:24:44 INFO  epoch 42 training [time: 101.66s, train_loss1: 29.2604, train_loss2: 0.8191, train_loss3: 0.2166]
+Sat 01 Nov 2025 16:24:44 INFO  epoch 42 evaluating [time: 0.38s, valid_score: 0.198200]
+Sat 01 Nov 2025 16:24:44 INFO  valid result: 
+recall@10 : 0.1595    recall@20 : 0.2441    recall@50 : 0.3977    ndcg@10 : 0.1982    ndcg@20 : 0.215    ndcg@50 : 0.2625
+Sat 01 Nov 2025 16:24:44 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:24:44 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:24:44 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:26:26 INFO  epoch 43 training [time: 101.71s, train_loss1: 29.0664, train_loss2: 0.8167, train_loss3: 0.2146]
+Sat 01 Nov 2025 16:26:27 INFO  epoch 43 evaluating [time: 0.39s, valid_score: 0.199600]
+Sat 01 Nov 2025 16:26:27 INFO  valid result: 
+recall@10 : 0.1609    recall@20 : 0.2456    recall@50 : 0.3997    ndcg@10 : 0.1996    ndcg@20 : 0.2164    ndcg@50 : 0.264
+Sat 01 Nov 2025 16:26:27 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:26:27 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:26:27 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:28:07 INFO  epoch 44 training [time: 100.35s, train_loss1: 28.8675, train_loss2: 0.8144, train_loss3: 0.2129]
+Sat 01 Nov 2025 16:28:08 INFO  epoch 44 evaluating [time: 0.37s, valid_score: 0.200000]
+Sat 01 Nov 2025 16:28:08 INFO  valid result: 
+recall@10 : 0.1618    recall@20 : 0.2474    recall@50 : 0.4024    ndcg@10 : 0.2    ndcg@20 : 0.2172    ndcg@50 : 0.2653
+Sat 01 Nov 2025 16:28:08 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:28:08 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:28:08 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:29:49 INFO  epoch 45 training [time: 100.76s, train_loss1: 28.5094, train_loss2: 0.8120, train_loss3: 0.2115]
+Sat 01 Nov 2025 16:29:49 INFO  epoch 45 evaluating [time: 0.38s, valid_score: 0.201000]
+Sat 01 Nov 2025 16:29:49 INFO  valid result: 
+recall@10 : 0.163    recall@20 : 0.249    recall@50 : 0.4038    ndcg@10 : 0.201    ndcg@20 : 0.2182    ndcg@50 : 0.2662
+Sat 01 Nov 2025 16:29:49 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:29:49 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:29:49 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:31:30 INFO  epoch 46 training [time: 101.20s, train_loss1: 28.4721, train_loss2: 0.8099, train_loss3: 0.2099]
+Sat 01 Nov 2025 16:31:31 INFO  epoch 46 evaluating [time: 0.39s, valid_score: 0.202600]
+Sat 01 Nov 2025 16:31:31 INFO  valid result: 
+recall@10 : 0.1642    recall@20 : 0.2508    recall@50 : 0.4061    ndcg@10 : 0.2026    ndcg@20 : 0.2196    ndcg@50 : 0.2678
+Sat 01 Nov 2025 16:31:31 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:31:31 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:31:31 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:33:12 INFO  epoch 47 training [time: 101.14s, train_loss1: 28.1409, train_loss2: 0.8079, train_loss3: 0.2085]
+Sat 01 Nov 2025 16:33:13 INFO  epoch 47 evaluating [time: 0.97s, valid_score: 0.203600]
+Sat 01 Nov 2025 16:33:13 INFO  valid result: 
+recall@10 : 0.1651    recall@20 : 0.2515    recall@50 : 0.4078    ndcg@10 : 0.2036    ndcg@20 : 0.2205    ndcg@50 : 0.269
+Sat 01 Nov 2025 16:33:13 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:33:13 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:33:13 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:34:54 INFO  epoch 48 training [time: 100.33s, train_loss1: 27.9895, train_loss2: 0.8059, train_loss3: 0.2071]
+Sat 01 Nov 2025 16:34:54 INFO  epoch 48 evaluating [time: 0.38s, valid_score: 0.204400]
+Sat 01 Nov 2025 16:34:54 INFO  valid result: 
+recall@10 : 0.1659    recall@20 : 0.2518    recall@50 : 0.409    ndcg@10 : 0.2044    ndcg@20 : 0.221    ndcg@50 : 0.2699
+Sat 01 Nov 2025 16:34:54 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:34:54 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:34:54 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:36:34 INFO  epoch 49 training [time: 99.09s, train_loss1: 27.6200, train_loss2: 0.8041, train_loss3: 0.2061]
+Sat 01 Nov 2025 16:36:34 INFO  epoch 49 evaluating [time: 0.37s, valid_score: 0.205600]
+Sat 01 Nov 2025 16:36:34 INFO  valid result: 
+recall@10 : 0.1669    recall@20 : 0.2534    recall@50 : 0.4111    ndcg@10 : 0.2056    ndcg@20 : 0.2224    ndcg@50 : 0.2714
+Sat 01 Nov 2025 16:36:34 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:36:34 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:36:34 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:38:12 INFO  epoch 50 training [time: 97.85s, train_loss1: 27.6354, train_loss2: 0.8021, train_loss3: 0.2042]
+Sat 01 Nov 2025 16:38:12 INFO  epoch 50 evaluating [time: 0.37s, valid_score: 0.206100]
+Sat 01 Nov 2025 16:38:12 INFO  valid result: 
+recall@10 : 0.1674    recall@20 : 0.2543    recall@50 : 0.412    ndcg@10 : 0.2061    ndcg@20 : 0.2233    ndcg@50 : 0.2722
+Sat 01 Nov 2025 16:38:12 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:38:12 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:38:12 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:39:52 INFO  epoch 51 training [time: 98.90s, train_loss1: 27.1261, train_loss2: 0.8002, train_loss3: 0.2029]
+Sat 01 Nov 2025 16:39:52 INFO  epoch 51 evaluating [time: 0.39s, valid_score: 0.206800]
+Sat 01 Nov 2025 16:39:52 INFO  valid result: 
+recall@10 : 0.1683    recall@20 : 0.2556    recall@50 : 0.4127    ndcg@10 : 0.2068    ndcg@20 : 0.2241    ndcg@50 : 0.2729
+Sat 01 Nov 2025 16:39:52 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:39:52 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:39:52 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:41:33 INFO  epoch 52 training [time: 100.83s, train_loss1: 27.2044, train_loss2: 0.7983, train_loss3: 0.2015]
+Sat 01 Nov 2025 16:41:33 INFO  epoch 52 evaluating [time: 0.38s, valid_score: 0.207500]
+Sat 01 Nov 2025 16:41:33 INFO  valid result: 
+recall@10 : 0.1691    recall@20 : 0.2574    recall@50 : 0.4145    ndcg@10 : 0.2075    ndcg@20 : 0.2251    ndcg@50 : 0.2738
+Sat 01 Nov 2025 16:41:33 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:41:33 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:41:33 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:43:14 INFO  epoch 53 training [time: 100.59s, train_loss1: 26.9513, train_loss2: 0.7964, train_loss3: 0.2005]
+Sat 01 Nov 2025 16:43:15 INFO  epoch 53 evaluating [time: 0.38s, valid_score: 0.208100]
+Sat 01 Nov 2025 16:43:15 INFO  valid result: 
+recall@10 : 0.1687    recall@20 : 0.2576    recall@50 : 0.4155    ndcg@10 : 0.2081    ndcg@20 : 0.2259    ndcg@50 : 0.2748
+Sat 01 Nov 2025 16:43:15 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:43:15 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:43:15 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:44:54 INFO  epoch 54 training [time: 99.38s, train_loss1: 26.7525, train_loss2: 0.7947, train_loss3: 0.1992]
+Sat 01 Nov 2025 16:44:55 INFO  epoch 54 evaluating [time: 0.39s, valid_score: 0.208400]
+Sat 01 Nov 2025 16:44:55 INFO  valid result: 
+recall@10 : 0.1695    recall@20 : 0.2586    recall@50 : 0.4165    ndcg@10 : 0.2084    ndcg@20 : 0.2265    ndcg@50 : 0.2754
+Sat 01 Nov 2025 16:44:55 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:44:55 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:44:55 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:46:34 INFO  epoch 55 training [time: 98.59s, train_loss1: 26.5605, train_loss2: 0.7929, train_loss3: 0.1980]
+Sat 01 Nov 2025 16:46:34 INFO  epoch 55 evaluating [time: 0.37s, valid_score: 0.208800]
+Sat 01 Nov 2025 16:46:34 INFO  valid result: 
+recall@10 : 0.1695    recall@20 : 0.2591    recall@50 : 0.4171    ndcg@10 : 0.2088    ndcg@20 : 0.2269    ndcg@50 : 0.2759
+Sat 01 Nov 2025 16:46:34 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:46:34 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:46:34 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:48:25 INFO  epoch 56 training [time: 110.38s, train_loss1: 26.5650, train_loss2: 0.7912, train_loss3: 0.1970]
+Sat 01 Nov 2025 16:48:25 INFO  epoch 56 evaluating [time: 0.38s, valid_score: 0.209400]
+Sat 01 Nov 2025 16:48:25 INFO  valid result: 
+recall@10 : 0.1698    recall@20 : 0.2608    recall@50 : 0.4187    ndcg@10 : 0.2094    ndcg@20 : 0.2278    ndcg@50 : 0.2769
+Sat 01 Nov 2025 16:48:25 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:48:25 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:48:25 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:51:25 INFO  epoch 57 training [time: 179.85s, train_loss1: 26.3453, train_loss2: 0.7895, train_loss3: 0.1959]
+Sat 01 Nov 2025 16:51:27 INFO  epoch 57 evaluating [time: 1.41s, valid_score: 0.209600]
+Sat 01 Nov 2025 16:51:27 INFO  valid result: 
+recall@10 : 0.1707    recall@20 : 0.2613    recall@50 : 0.4199    ndcg@10 : 0.2096    ndcg@20 : 0.228    ndcg@50 : 0.2772
+Sat 01 Nov 2025 16:51:27 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:51:27 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:51:27 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:53:16 INFO  epoch 58 training [time: 108.59s, train_loss1: 26.0603, train_loss2: 0.7878, train_loss3: 0.1950]
+Sat 01 Nov 2025 16:53:16 INFO  epoch 58 evaluating [time: 0.40s, valid_score: 0.209800]
+Sat 01 Nov 2025 16:53:16 INFO  valid result: 
+recall@10 : 0.1708    recall@20 : 0.2622    recall@50 : 0.4213    ndcg@10 : 0.2098    ndcg@20 : 0.2285    ndcg@50 : 0.278
+Sat 01 Nov 2025 16:53:16 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:53:16 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:53:16 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:54:57 INFO  epoch 59 training [time: 100.16s, train_loss1: 26.0954, train_loss2: 0.7864, train_loss3: 0.1937]
+Sat 01 Nov 2025 16:54:57 INFO  epoch 59 evaluating [time: 0.38s, valid_score: 0.210400]
+Sat 01 Nov 2025 16:54:57 INFO  valid result: 
+recall@10 : 0.1714    recall@20 : 0.2625    recall@50 : 0.4221    ndcg@10 : 0.2104    ndcg@20 : 0.2292    ndcg@50 : 0.2788
+Sat 01 Nov 2025 16:54:57 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:54:57 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:54:57 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:56:41 INFO  epoch 60 training [time: 103.92s, train_loss1: 25.7880, train_loss2: 0.7848, train_loss3: 0.1922]
+Sat 01 Nov 2025 16:56:42 INFO  epoch 60 evaluating [time: 0.38s, valid_score: 0.211200]
+Sat 01 Nov 2025 16:56:42 INFO  valid result: 
+recall@10 : 0.172    recall@20 : 0.2626    recall@50 : 0.4228    ndcg@10 : 0.2112    ndcg@20 : 0.2298    ndcg@50 : 0.2796
+Sat 01 Nov 2025 16:56:42 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:56:42 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:56:42 INFO  Running E-step ! 
+Sat 01 Nov 2025 16:58:22 INFO  epoch 61 training [time: 100.04s, train_loss1: 25.6157, train_loss2: 0.7832, train_loss3: 0.1913]
+Sat 01 Nov 2025 16:58:22 INFO  epoch 61 evaluating [time: 0.38s, valid_score: 0.211500]
+Sat 01 Nov 2025 16:58:22 INFO  valid result: 
+recall@10 : 0.1727    recall@20 : 0.2634    recall@50 : 0.4235    ndcg@10 : 0.2115    ndcg@20 : 0.2302    ndcg@50 : 0.28
+Sat 01 Nov 2025 16:58:22 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:58:22 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 16:58:22 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:00:03 INFO  epoch 62 training [time: 100.40s, train_loss1: 25.5334, train_loss2: 0.7817, train_loss3: 0.1902]
+Sat 01 Nov 2025 17:00:03 INFO  epoch 62 evaluating [time: 0.38s, valid_score: 0.211900]
+Sat 01 Nov 2025 17:00:03 INFO  valid result: 
+recall@10 : 0.1734    recall@20 : 0.2646    recall@50 : 0.4247    ndcg@10 : 0.2119    ndcg@20 : 0.2307    ndcg@50 : 0.2806
+Sat 01 Nov 2025 17:00:03 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:00:03 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:00:03 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:01:43 INFO  epoch 63 training [time: 99.39s, train_loss1: 25.3024, train_loss2: 0.7802, train_loss3: 0.1895]
+Sat 01 Nov 2025 17:01:43 INFO  epoch 63 evaluating [time: 0.39s, valid_score: 0.212400]
+Sat 01 Nov 2025 17:01:43 INFO  valid result: 
+recall@10 : 0.1737    recall@20 : 0.2643    recall@50 : 0.4258    ndcg@10 : 0.2124    ndcg@20 : 0.2309    ndcg@50 : 0.2814
+Sat 01 Nov 2025 17:01:43 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:01:43 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:01:43 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:03:24 INFO  epoch 64 training [time: 100.12s, train_loss1: 25.0986, train_loss2: 0.7787, train_loss3: 0.1883]
+Sat 01 Nov 2025 17:03:24 INFO  epoch 64 evaluating [time: 0.40s, valid_score: 0.212600]
+Sat 01 Nov 2025 17:03:24 INFO  valid result: 
+recall@10 : 0.1738    recall@20 : 0.2649    recall@50 : 0.4263    ndcg@10 : 0.2126    ndcg@20 : 0.2313    ndcg@50 : 0.2817
+Sat 01 Nov 2025 17:03:24 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:03:24 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:03:24 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:05:04 INFO  epoch 65 training [time: 99.73s, train_loss1: 25.0655, train_loss2: 0.7774, train_loss3: 0.1874]
+Sat 01 Nov 2025 17:05:04 INFO  epoch 65 evaluating [time: 0.38s, valid_score: 0.213300]
+Sat 01 Nov 2025 17:05:04 INFO  valid result: 
+recall@10 : 0.1745    recall@20 : 0.2656    recall@50 : 0.4263    ndcg@10 : 0.2133    ndcg@20 : 0.2319    ndcg@50 : 0.282
+Sat 01 Nov 2025 17:05:05 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:05:05 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:05:05 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:06:45 INFO  epoch 66 training [time: 100.38s, train_loss1: 24.9391, train_loss2: 0.7761, train_loss3: 0.1865]
+Sat 01 Nov 2025 17:06:46 INFO  epoch 66 evaluating [time: 0.38s, valid_score: 0.213200]
+Sat 01 Nov 2025 17:06:46 INFO  valid result: 
+recall@10 : 0.1745    recall@20 : 0.2659    recall@50 : 0.4269    ndcg@10 : 0.2132    ndcg@20 : 0.2321    ndcg@50 : 0.2823
+Sat 01 Nov 2025 17:06:46 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:08:27 INFO  epoch 67 training [time: 100.88s, train_loss1: 24.7060, train_loss2: 0.7747, train_loss3: 0.1861]
+Sat 01 Nov 2025 17:08:27 INFO  epoch 67 evaluating [time: 0.39s, valid_score: 0.213200]
+Sat 01 Nov 2025 17:08:27 INFO  valid result: 
+recall@10 : 0.1745    recall@20 : 0.2669    recall@50 : 0.4277    ndcg@10 : 0.2132    ndcg@20 : 0.2324    ndcg@50 : 0.2826
+Sat 01 Nov 2025 17:08:27 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:10:08 INFO  epoch 68 training [time: 100.18s, train_loss1: 24.6893, train_loss2: 0.7733, train_loss3: 0.1853]
+Sat 01 Nov 2025 17:10:08 INFO  epoch 68 evaluating [time: 0.41s, valid_score: 0.213500]
+Sat 01 Nov 2025 17:10:08 INFO  valid result: 
+recall@10 : 0.1747    recall@20 : 0.2669    recall@50 : 0.4279    ndcg@10 : 0.2135    ndcg@20 : 0.2325    ndcg@50 : 0.2829
+Sat 01 Nov 2025 17:10:08 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:10:08 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:10:08 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:11:50 INFO  epoch 69 training [time: 102.07s, train_loss1: 24.3918, train_loss2: 0.7718, train_loss3: 0.1849]
+Sat 01 Nov 2025 17:11:51 INFO  epoch 69 evaluating [time: 0.42s, valid_score: 0.213900]
+Sat 01 Nov 2025 17:11:51 INFO  valid result: 
+recall@10 : 0.1756    recall@20 : 0.2673    recall@50 : 0.4288    ndcg@10 : 0.2139    ndcg@20 : 0.2327    ndcg@50 : 0.2833
+Sat 01 Nov 2025 17:11:51 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:11:51 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:11:51 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:13:32 INFO  epoch 70 training [time: 101.37s, train_loss1: 24.4251, train_loss2: 0.7704, train_loss3: 0.1838]
+Sat 01 Nov 2025 17:13:33 INFO  epoch 70 evaluating [time: 0.38s, valid_score: 0.213600]
+Sat 01 Nov 2025 17:13:33 INFO  valid result: 
+recall@10 : 0.1754    recall@20 : 0.2671    recall@50 : 0.4292    ndcg@10 : 0.2136    ndcg@20 : 0.2326    ndcg@50 : 0.2834
+Sat 01 Nov 2025 17:13:33 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:15:15 INFO  epoch 71 training [time: 101.93s, train_loss1: 24.4904, train_loss2: 0.7691, train_loss3: 0.1835]
+Sat 01 Nov 2025 17:15:15 INFO  epoch 71 evaluating [time: 0.38s, valid_score: 0.213800]
+Sat 01 Nov 2025 17:15:15 INFO  valid result: 
+recall@10 : 0.1755    recall@20 : 0.2672    recall@50 : 0.4298    ndcg@10 : 0.2138    ndcg@20 : 0.2329    ndcg@50 : 0.2837
+Sat 01 Nov 2025 17:15:15 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:16:55 INFO  epoch 72 training [time: 99.93s, train_loss1: 24.1307, train_loss2: 0.7679, train_loss3: 0.1827]
+Sat 01 Nov 2025 17:16:56 INFO  epoch 72 evaluating [time: 0.39s, valid_score: 0.214100]
+Sat 01 Nov 2025 17:16:56 INFO  valid result: 
+recall@10 : 0.176    recall@20 : 0.2676    recall@50 : 0.4308    ndcg@10 : 0.2141    ndcg@20 : 0.2333    ndcg@50 : 0.2842
+Sat 01 Nov 2025 17:16:56 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:16:56 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:16:56 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:18:37 INFO  epoch 73 training [time: 100.76s, train_loss1: 24.1340, train_loss2: 0.7666, train_loss3: 0.1816]
+Sat 01 Nov 2025 17:18:37 INFO  epoch 73 evaluating [time: 0.38s, valid_score: 0.214200]
+Sat 01 Nov 2025 17:18:37 INFO  valid result: 
+recall@10 : 0.176    recall@20 : 0.2685    recall@50 : 0.4312    ndcg@10 : 0.2142    ndcg@20 : 0.2336    ndcg@50 : 0.2844
+Sat 01 Nov 2025 17:18:37 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:18:37 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:18:37 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:20:19 INFO  epoch 74 training [time: 101.59s, train_loss1: 23.8365, train_loss2: 0.7655, train_loss3: 0.1814]
+Sat 01 Nov 2025 17:20:20 INFO  epoch 74 evaluating [time: 0.38s, valid_score: 0.215000]
+Sat 01 Nov 2025 17:20:20 INFO  valid result: 
+recall@10 : 0.1769    recall@20 : 0.269    recall@50 : 0.432    ndcg@10 : 0.215    ndcg@20 : 0.234    ndcg@50 : 0.2849
+Sat 01 Nov 2025 17:20:20 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:20:20 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:20:20 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:22:01 INFO  epoch 75 training [time: 101.17s, train_loss1: 23.9328, train_loss2: 0.7641, train_loss3: 0.1808]
+Sat 01 Nov 2025 17:22:01 INFO  epoch 75 evaluating [time: 0.38s, valid_score: 0.215100]
+Sat 01 Nov 2025 17:22:01 INFO  valid result: 
+recall@10 : 0.1771    recall@20 : 0.2689    recall@50 : 0.4329    ndcg@10 : 0.2151    ndcg@20 : 0.2341    ndcg@50 : 0.2853
+Sat 01 Nov 2025 17:22:01 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:22:01 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:22:01 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:23:40 INFO  epoch 76 training [time: 98.38s, train_loss1: 23.5625, train_loss2: 0.7630, train_loss3: 0.1808]
+Sat 01 Nov 2025 17:23:40 INFO  epoch 76 evaluating [time: 0.38s, valid_score: 0.215100]
+Sat 01 Nov 2025 17:23:40 INFO  valid result: 
+recall@10 : 0.1774    recall@20 : 0.2695    recall@50 : 0.433    ndcg@10 : 0.2151    ndcg@20 : 0.2342    ndcg@50 : 0.2852
+Sat 01 Nov 2025 17:23:40 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:23:40 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:23:40 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:25:20 INFO  epoch 77 training [time: 99.38s, train_loss1: 23.4797, train_loss2: 0.7617, train_loss3: 0.1801]
+Sat 01 Nov 2025 17:25:21 INFO  epoch 77 evaluating [time: 0.39s, valid_score: 0.215400]
+Sat 01 Nov 2025 17:25:21 INFO  valid result: 
+recall@10 : 0.1775    recall@20 : 0.2697    recall@50 : 0.4329    ndcg@10 : 0.2154    ndcg@20 : 0.2344    ndcg@50 : 0.2855
+Sat 01 Nov 2025 17:25:21 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:25:21 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:25:21 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:27:01 INFO  epoch 78 training [time: 100.33s, train_loss1: 23.3914, train_loss2: 0.7606, train_loss3: 0.1796]
+Sat 01 Nov 2025 17:27:02 INFO  epoch 78 evaluating [time: 0.40s, valid_score: 0.215600]
+Sat 01 Nov 2025 17:27:02 INFO  valid result: 
+recall@10 : 0.1777    recall@20 : 0.2705    recall@50 : 0.433    ndcg@10 : 0.2156    ndcg@20 : 0.2347    ndcg@50 : 0.2857
+Sat 01 Nov 2025 17:27:02 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:27:02 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:27:02 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:28:40 INFO  epoch 79 training [time: 98.33s, train_loss1: 23.3946, train_loss2: 0.7595, train_loss3: 0.1794]
+Sat 01 Nov 2025 17:28:41 INFO  epoch 79 evaluating [time: 0.39s, valid_score: 0.216000]
+Sat 01 Nov 2025 17:28:41 INFO  valid result: 
+recall@10 : 0.1782    recall@20 : 0.2707    recall@50 : 0.435    ndcg@10 : 0.216    ndcg@20 : 0.2351    ndcg@50 : 0.2864
+Sat 01 Nov 2025 17:28:41 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:28:41 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:28:41 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:30:19 INFO  epoch 80 training [time: 97.81s, train_loss1: 23.0985, train_loss2: 0.7583, train_loss3: 0.1791]
+Sat 01 Nov 2025 17:30:19 INFO  epoch 80 evaluating [time: 0.38s, valid_score: 0.216000]
+Sat 01 Nov 2025 17:30:19 INFO  valid result: 
+recall@10 : 0.178    recall@20 : 0.2697    recall@50 : 0.435    ndcg@10 : 0.216    ndcg@20 : 0.235    ndcg@50 : 0.2866
+Sat 01 Nov 2025 17:30:19 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:30:19 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:30:19 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:31:58 INFO  epoch 81 training [time: 98.37s, train_loss1: 23.1829, train_loss2: 0.7571, train_loss3: 0.1781]
+Sat 01 Nov 2025 17:31:58 INFO  epoch 81 evaluating [time: 0.39s, valid_score: 0.216400]
+Sat 01 Nov 2025 17:31:58 INFO  valid result: 
+recall@10 : 0.1785    recall@20 : 0.2703    recall@50 : 0.436    ndcg@10 : 0.2164    ndcg@20 : 0.2354    ndcg@50 : 0.2872
+Sat 01 Nov 2025 17:31:58 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:31:58 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:31:58 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:33:37 INFO  epoch 82 training [time: 99.08s, train_loss1: 23.0040, train_loss2: 0.7560, train_loss3: 0.1776]
+Sat 01 Nov 2025 17:33:38 INFO  epoch 82 evaluating [time: 0.39s, valid_score: 0.216600]
+Sat 01 Nov 2025 17:33:38 INFO  valid result: 
+recall@10 : 0.1791    recall@20 : 0.2701    recall@50 : 0.4367    ndcg@10 : 0.2166    ndcg@20 : 0.2353    ndcg@50 : 0.2873
+Sat 01 Nov 2025 17:33:38 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:33:38 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:33:38 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:35:16 INFO  epoch 83 training [time: 97.78s, train_loss1: 22.9323, train_loss2: 0.7550, train_loss3: 0.1778]
+Sat 01 Nov 2025 17:35:16 INFO  epoch 83 evaluating [time: 0.39s, valid_score: 0.216300]
+Sat 01 Nov 2025 17:35:16 INFO  valid result: 
+recall@10 : 0.1786    recall@20 : 0.2699    recall@50 : 0.4367    ndcg@10 : 0.2163    ndcg@20 : 0.2353    ndcg@50 : 0.2873
+Sat 01 Nov 2025 17:35:16 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:36:55 INFO  epoch 84 training [time: 98.18s, train_loss1: 22.7546, train_loss2: 0.7539, train_loss3: 0.1770]
+Sat 01 Nov 2025 17:36:55 INFO  epoch 84 evaluating [time: 0.38s, valid_score: 0.216300]
+Sat 01 Nov 2025 17:36:55 INFO  valid result: 
+recall@10 : 0.1782    recall@20 : 0.2706    recall@50 : 0.4378    ndcg@10 : 0.2163    ndcg@20 : 0.2354    ndcg@50 : 0.2876
+Sat 01 Nov 2025 17:36:55 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:38:37 INFO  epoch 85 training [time: 101.73s, train_loss1: 22.6914, train_loss2: 0.7529, train_loss3: 0.1768]
+Sat 01 Nov 2025 17:38:37 INFO  epoch 85 evaluating [time: 0.38s, valid_score: 0.216300]
+Sat 01 Nov 2025 17:38:37 INFO  valid result: 
+recall@10 : 0.1783    recall@20 : 0.2698    recall@50 : 0.4379    ndcg@10 : 0.2163    ndcg@20 : 0.2351    ndcg@50 : 0.2877
+Sat 01 Nov 2025 17:38:37 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:40:18 INFO  epoch 86 training [time: 100.55s, train_loss1: 22.4875, train_loss2: 0.7518, train_loss3: 0.1761]
+Sat 01 Nov 2025 17:40:19 INFO  epoch 86 evaluating [time: 0.37s, valid_score: 0.216600]
+Sat 01 Nov 2025 17:40:19 INFO  valid result: 
+recall@10 : 0.178    recall@20 : 0.2707    recall@50 : 0.4385    ndcg@10 : 0.2166    ndcg@20 : 0.2357    ndcg@50 : 0.2882
+Sat 01 Nov 2025 17:40:19 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:40:19 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:40:19 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:42:01 INFO  epoch 87 training [time: 102.15s, train_loss1: 22.4507, train_loss2: 0.7508, train_loss3: 0.1760]
+Sat 01 Nov 2025 17:42:01 INFO  epoch 87 evaluating [time: 0.40s, valid_score: 0.216700]
+Sat 01 Nov 2025 17:42:01 INFO  valid result: 
+recall@10 : 0.1786    recall@20 : 0.2706    recall@50 : 0.4388    ndcg@10 : 0.2167    ndcg@20 : 0.2356    ndcg@50 : 0.2882
+Sat 01 Nov 2025 17:42:01 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:42:01 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:42:01 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:43:41 INFO  epoch 88 training [time: 99.92s, train_loss1: 22.4447, train_loss2: 0.7498, train_loss3: 0.1755]
+Sat 01 Nov 2025 17:43:42 INFO  epoch 88 evaluating [time: 0.39s, valid_score: 0.217100]
+Sat 01 Nov 2025 17:43:42 INFO  valid result: 
+recall@10 : 0.179    recall@20 : 0.2717    recall@50 : 0.4394    ndcg@10 : 0.2171    ndcg@20 : 0.2362    ndcg@50 : 0.2885
+Sat 01 Nov 2025 17:43:42 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:43:42 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:43:42 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:45:22 INFO  epoch 89 training [time: 100.24s, train_loss1: 22.2999, train_loss2: 0.7489, train_loss3: 0.1752]
+Sat 01 Nov 2025 17:45:23 INFO  epoch 89 evaluating [time: 0.39s, valid_score: 0.216800]
+Sat 01 Nov 2025 17:45:23 INFO  valid result: 
+recall@10 : 0.1789    recall@20 : 0.2715    recall@50 : 0.44    ndcg@10 : 0.2168    ndcg@20 : 0.2359    ndcg@50 : 0.2884
+Sat 01 Nov 2025 17:45:23 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:47:03 INFO  epoch 90 training [time: 99.62s, train_loss1: 22.2388, train_loss2: 0.7480, train_loss3: 0.1747]
+Sat 01 Nov 2025 17:47:03 INFO  epoch 90 evaluating [time: 0.37s, valid_score: 0.217600]
+Sat 01 Nov 2025 17:47:03 INFO  valid result: 
+recall@10 : 0.1796    recall@20 : 0.2713    recall@50 : 0.439    ndcg@10 : 0.2176    ndcg@20 : 0.2363    ndcg@50 : 0.2887
+Sat 01 Nov 2025 17:47:03 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:47:03 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:47:03 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:48:43 INFO  epoch 91 training [time: 100.06s, train_loss1: 22.0787, train_loss2: 0.7469, train_loss3: 0.1747]
+Sat 01 Nov 2025 17:48:44 INFO  epoch 91 evaluating [time: 0.42s, valid_score: 0.217600]
+Sat 01 Nov 2025 17:48:44 INFO  valid result: 
+recall@10 : 0.1796    recall@20 : 0.2717    recall@50 : 0.4404    ndcg@10 : 0.2176    ndcg@20 : 0.2365    ndcg@50 : 0.2892
+Sat 01 Nov 2025 17:48:44 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:48:44 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:48:44 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:50:24 INFO  epoch 92 training [time: 100.44s, train_loss1: 22.1088, train_loss2: 0.7458, train_loss3: 0.1740]
+Sat 01 Nov 2025 17:50:25 INFO  epoch 92 evaluating [time: 0.38s, valid_score: 0.217500]
+Sat 01 Nov 2025 17:50:25 INFO  valid result: 
+recall@10 : 0.1798    recall@20 : 0.2716    recall@50 : 0.4402    ndcg@10 : 0.2175    ndcg@20 : 0.2364    ndcg@50 : 0.2891
+Sat 01 Nov 2025 17:50:25 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:52:07 INFO  epoch 93 training [time: 101.65s, train_loss1: 21.8830, train_loss2: 0.7449, train_loss3: 0.1730]
+Sat 01 Nov 2025 17:52:09 INFO  epoch 93 evaluating [time: 1.76s, valid_score: 0.217700]
+Sat 01 Nov 2025 17:52:09 INFO  valid result: 
+recall@10 : 0.1792    recall@20 : 0.2716    recall@50 : 0.4404    ndcg@10 : 0.2177    ndcg@20 : 0.2368    ndcg@50 : 0.2895
+Sat 01 Nov 2025 17:52:09 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:52:09 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:52:09 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:53:49 INFO  epoch 94 training [time: 100.33s, train_loss1: 21.8823, train_loss2: 0.7440, train_loss3: 0.1731]
+Sat 01 Nov 2025 17:53:50 INFO  epoch 94 evaluating [time: 0.41s, valid_score: 0.218000]
+Sat 01 Nov 2025 17:53:50 INFO  valid result: 
+recall@10 : 0.1794    recall@20 : 0.2723    recall@50 : 0.4415    ndcg@10 : 0.218    ndcg@20 : 0.237    ndcg@50 : 0.2899
+Sat 01 Nov 2025 17:53:50 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:53:50 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 17:53:50 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:55:32 INFO  epoch 95 training [time: 101.79s, train_loss1: 21.7429, train_loss2: 0.7431, train_loss3: 0.1732]
+Sat 01 Nov 2025 17:55:32 INFO  epoch 95 evaluating [time: 0.38s, valid_score: 0.217800]
+Sat 01 Nov 2025 17:55:32 INFO  valid result: 
+recall@10 : 0.1794    recall@20 : 0.2724    recall@50 : 0.4423    ndcg@10 : 0.2178    ndcg@20 : 0.2371    ndcg@50 : 0.2902
+Sat 01 Nov 2025 17:55:32 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:57:12 INFO  epoch 96 training [time: 99.90s, train_loss1: 21.6544, train_loss2: 0.7423, train_loss3: 0.1728]
+Sat 01 Nov 2025 17:57:12 INFO  epoch 96 evaluating [time: 0.38s, valid_score: 0.217600]
+Sat 01 Nov 2025 17:57:12 INFO  valid result: 
+recall@10 : 0.1786    recall@20 : 0.2728    recall@50 : 0.4418    ndcg@10 : 0.2176    ndcg@20 : 0.2375    ndcg@50 : 0.2903
+Sat 01 Nov 2025 17:57:13 INFO  Running E-step ! 
+Sat 01 Nov 2025 17:58:55 INFO  epoch 97 training [time: 101.99s, train_loss1: 21.5522, train_loss2: 0.7415, train_loss3: 0.1721]
+Sat 01 Nov 2025 17:58:55 INFO  epoch 97 evaluating [time: 0.38s, valid_score: 0.217900]
+Sat 01 Nov 2025 17:58:55 INFO  valid result: 
+recall@10 : 0.1787    recall@20 : 0.2726    recall@50 : 0.442    ndcg@10 : 0.2179    ndcg@20 : 0.2376    ndcg@50 : 0.2905
+Sat 01 Nov 2025 17:58:55 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:00:36 INFO  epoch 98 training [time: 100.31s, train_loss1: 21.4588, train_loss2: 0.7408, train_loss3: 0.1723]
+Sat 01 Nov 2025 18:00:36 INFO  epoch 98 evaluating [time: 0.39s, valid_score: 0.218000]
+Sat 01 Nov 2025 18:00:36 INFO  valid result: 
+recall@10 : 0.1786    recall@20 : 0.2729    recall@50 : 0.4431    ndcg@10 : 0.218    ndcg@20 : 0.2379    ndcg@50 : 0.291
+Sat 01 Nov 2025 18:00:36 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 18:00:36 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 18:00:36 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:02:16 INFO  epoch 99 training [time: 99.92s, train_loss1: 21.3293, train_loss2: 0.7401, train_loss3: 0.1720]
+Sat 01 Nov 2025 18:02:17 INFO  epoch 99 evaluating [time: 0.38s, valid_score: 0.218000]
+Sat 01 Nov 2025 18:02:17 INFO  valid result: 
+recall@10 : 0.1785    recall@20 : 0.2726    recall@50 : 0.4432    ndcg@10 : 0.218    ndcg@20 : 0.2379    ndcg@50 : 0.2911
+Sat 01 Nov 2025 18:02:17 INFO  Saving current: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 18:02:17 INFO  Saving current best: saved\NCL-Nov-01-2025_15-10-05.pth
+Sat 01 Nov 2025 18:02:17 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:03:56 INFO  epoch 100 training [time: 99.17s, train_loss1: 21.3267, train_loss2: 0.7393, train_loss3: 0.1712]
+Sat 01 Nov 2025 18:03:56 INFO  epoch 100 evaluating [time: 0.39s, valid_score: 0.217700]
+Sat 01 Nov 2025 18:03:56 INFO  valid result: 
+recall@10 : 0.1789    recall@20 : 0.273    recall@50 : 0.4435    ndcg@10 : 0.2177    ndcg@20 : 0.2379    ndcg@50 : 0.291
+Sat 01 Nov 2025 18:03:56 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:05:35 INFO  epoch 101 training [time: 98.55s, train_loss1: 21.1552, train_loss2: 0.7385, train_loss3: 0.1713]
+Sat 01 Nov 2025 18:05:36 INFO  epoch 101 evaluating [time: 0.39s, valid_score: 0.217500]
+Sat 01 Nov 2025 18:05:36 INFO  valid result: 
+recall@10 : 0.1783    recall@20 : 0.2729    recall@50 : 0.4434    ndcg@10 : 0.2175    ndcg@20 : 0.2378    ndcg@50 : 0.2909
+Sat 01 Nov 2025 18:05:36 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:07:14 INFO  epoch 102 training [time: 97.92s, train_loss1: 20.9904, train_loss2: 0.7375, train_loss3: 0.1712]
+Sat 01 Nov 2025 18:07:14 INFO  epoch 102 evaluating [time: 0.39s, valid_score: 0.217700]
+Sat 01 Nov 2025 18:07:14 INFO  valid result: 
+recall@10 : 0.1791    recall@20 : 0.2733    recall@50 : 0.4433    ndcg@10 : 0.2177    ndcg@20 : 0.2379    ndcg@50 : 0.2909
+Sat 01 Nov 2025 18:07:14 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:08:53 INFO  epoch 103 training [time: 98.48s, train_loss1: 21.0834, train_loss2: 0.7365, train_loss3: 0.1711]
+Sat 01 Nov 2025 18:08:53 INFO  epoch 103 evaluating [time: 0.38s, valid_score: 0.217800]
+Sat 01 Nov 2025 18:08:53 INFO  valid result: 
+recall@10 : 0.1789    recall@20 : 0.2733    recall@50 : 0.4435    ndcg@10 : 0.2178    ndcg@20 : 0.2381    ndcg@50 : 0.2912
+Sat 01 Nov 2025 18:08:53 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:10:33 INFO  epoch 104 training [time: 99.77s, train_loss1: 20.9042, train_loss2: 0.7357, train_loss3: 0.1710]
+Sat 01 Nov 2025 18:10:34 INFO  epoch 104 evaluating [time: 0.38s, valid_score: 0.217600]
+Sat 01 Nov 2025 18:10:34 INFO  valid result: 
+recall@10 : 0.1785    recall@20 : 0.2731    recall@50 : 0.4438    ndcg@10 : 0.2176    ndcg@20 : 0.238    ndcg@50 : 0.2912
+Sat 01 Nov 2025 18:10:34 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:12:13 INFO  epoch 105 training [time: 99.03s, train_loss1: 20.9683, train_loss2: 0.7350, train_loss3: 0.1705]
+Sat 01 Nov 2025 18:12:13 INFO  epoch 105 evaluating [time: 0.38s, valid_score: 0.217500]
+Sat 01 Nov 2025 18:12:13 INFO  valid result: 
+recall@10 : 0.1787    recall@20 : 0.2733    recall@50 : 0.4443    ndcg@10 : 0.2175    ndcg@20 : 0.2379    ndcg@50 : 0.2913
+Sat 01 Nov 2025 18:12:13 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:13:53 INFO  epoch 106 training [time: 99.06s, train_loss1: 20.7755, train_loss2: 0.7343, train_loss3: 0.1711]
+Sat 01 Nov 2025 18:13:53 INFO  epoch 106 evaluating [time: 0.38s, valid_score: 0.217300]
+Sat 01 Nov 2025 18:13:53 INFO  valid result: 
+recall@10 : 0.1786    recall@20 : 0.2725    recall@50 : 0.4443    ndcg@10 : 0.2173    ndcg@20 : 0.2376    ndcg@50 : 0.2911
+Sat 01 Nov 2025 18:13:53 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:15:34 INFO  epoch 107 training [time: 100.43s, train_loss1: 20.5907, train_loss2: 0.7338, train_loss3: 0.1704]
+Sat 01 Nov 2025 18:15:34 INFO  epoch 107 evaluating [time: 0.38s, valid_score: 0.217600]
+Sat 01 Nov 2025 18:15:34 INFO  valid result: 
+recall@10 : 0.1784    recall@20 : 0.2735    recall@50 : 0.4443    ndcg@10 : 0.2176    ndcg@20 : 0.2379    ndcg@50 : 0.2912
+Sat 01 Nov 2025 18:15:34 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:17:14 INFO  epoch 108 training [time: 99.67s, train_loss1: 20.8040, train_loss2: 0.7331, train_loss3: 0.1707]
+Sat 01 Nov 2025 18:17:14 INFO  epoch 108 evaluating [time: 0.38s, valid_score: 0.217200]
+Sat 01 Nov 2025 18:17:14 INFO  valid result: 
+recall@10 : 0.1779    recall@20 : 0.273    recall@50 : 0.4446    ndcg@10 : 0.2172    ndcg@20 : 0.2378    ndcg@50 : 0.2913
+Sat 01 Nov 2025 18:17:14 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:18:55 INFO  epoch 109 training [time: 100.29s, train_loss1: 20.5463, train_loss2: 0.7322, train_loss3: 0.1702]
+Sat 01 Nov 2025 18:18:55 INFO  epoch 109 evaluating [time: 0.38s, valid_score: 0.217100]
+Sat 01 Nov 2025 18:18:55 INFO  valid result: 
+recall@10 : 0.1785    recall@20 : 0.2736    recall@50 : 0.4443    ndcg@10 : 0.2171    ndcg@20 : 0.2377    ndcg@50 : 0.291
+Sat 01 Nov 2025 18:18:55 INFO  Running E-step ! 
+Sat 01 Nov 2025 18:20:37 INFO  epoch 110 training [time: 101.12s, train_loss1: 20.4395, train_loss2: 0.7315, train_loss3: 0.1698]
+Sat 01 Nov 2025 18:20:37 INFO  epoch 110 evaluating [time: 0.39s, valid_score: 0.216900]
+Sat 01 Nov 2025 18:20:37 INFO  valid result: 
+recall@10 : 0.1778    recall@20 : 0.2745    recall@50 : 0.4444    ndcg@10 : 0.2169    ndcg@20 : 0.2383    ndcg@50 : 0.2912
+Sat 01 Nov 2025 18:20:37 INFO  Finished training, best eval result in epoch 99

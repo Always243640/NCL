@@ -101,9 +101,15 @@ class NCL(GeneralRecommender):
         A = sp.dok_matrix((self.n_users + self.n_items, self.n_users + self.n_items), dtype=np.float32)
         inter_M = self.interaction_matrix
         inter_M_t = self.interaction_matrix.transpose()
+
+        # 创建数据字典
         data_dict = dict(zip(zip(inter_M.row, inter_M.col + self.n_users), [1] * inter_M.nnz))
         data_dict.update(dict(zip(zip(inter_M_t.row + self.n_users, inter_M_t.col), [1] * inter_M_t.nnz)))
-        A._update(data_dict)
+
+        # 修复：手动更新 dok_matrix，避免使用 update 方法
+        for key, value in data_dict.items():
+            A[key] = value
+
         # norm adj matrix
         sumArr = (A > 0).sum(axis=1)
         # add epsilon to avoid divide by zero Warning
@@ -112,6 +118,7 @@ class NCL(GeneralRecommender):
         self.diag = torch.from_numpy(diag).to(self.device)
         D = sp.diags(diag)
         L = D @ A @ D
+
         # covert norm_adj matrix to tensor
         L = sp.coo_matrix(L)
         row = L.row
