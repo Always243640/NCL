@@ -117,11 +117,22 @@ def _recommend_top1(model: NCL, user_values: Sequence[Tuple[object, str]]) -> Li
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate top-1 book recommendations.")
-    parser.add_argument(
+    model_group = parser.add_mutually_exclusive_group(required=True)
+    model_group.add_argument(
         "--model-path",
         type=str,
-        required=True,
-        help="Path to the trained model checkpoint located in the 'saved' directory.",
+        help="Full path to the trained model checkpoint.",
+    )
+    model_group.add_argument(
+        "--model-name",
+        type=str,
+        help="File name of a checkpoint stored inside --saved-dir (e.g. 'NCL-epoch-10.pth').",
+    )
+    parser.add_argument(
+        "--saved-dir",
+        type=str,
+        default="saved",
+        help="Directory that contains saved model checkpoints when using --model-name.",
     )
     parser.add_argument(
         "--dataset",
@@ -157,15 +168,21 @@ def main() -> None:
 
     logging.basicConfig(level=getattr(logging, args.log_level.upper(), logging.INFO))
 
-    if not os.path.exists(args.model_path):
-        raise FileNotFoundError(f"Model checkpoint not found: {args.model_path}")
+    checkpoint_path = args.model_path
+    if args.model_name:
+        checkpoint_path = os.path.join(args.saved_dir, args.model_name)
+
+    if not os.path.exists(checkpoint_path):
+        raise FileNotFoundError(f"Model checkpoint not found: {checkpoint_path}")
+
+    logging.info("Loading checkpoint from %s", checkpoint_path)
 
     user_values = _load_users_from_interactions(args.interactions)
     if not user_values:
         raise ValueError("No users found in the provided interaction file.")
 
     config = _build_config(args.dataset, args.extra_config)
-    model = _load_model(config, args.model_path)
+    model = _load_model(config, checkpoint_path)
 
     recommendations = _recommend_top1(model, user_values)
     if not recommendations:
